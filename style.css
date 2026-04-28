@@ -66,14 +66,13 @@ a {
 }
 
 .logo-img {
-    height: 60px; /* Jetzt ohne Ränder, 60px ist ideal */
+    height: 80px;
     width: auto;
 }
 
 .logo-img-footer {
-    height: 40px;
+    height: 56px;
     width: auto;
-    filter: brightness(0) invert(1);
 }
 
 .nav-links {
