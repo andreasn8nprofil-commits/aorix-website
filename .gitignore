@@ -1,0 +1,19 @@
+# Vercel
+.vercel/
+
+# Editor
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Node (falls später ein Build-Step dazukommt)
+node_modules/
+npm-debug.log*
+
+# Backup-Dateien
+*.bak
+*~
