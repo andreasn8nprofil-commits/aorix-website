@@ -1,0 +1,20 @@
+User-agent: *
+Allow: /
+Disallow: /impressum.html
+Disallow: /datenschutz.html
+Disallow: /agb.html
+
+# Erlaube AI-Crawler explizit (GEO / Generative Engine Optimization)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://aorix.de/sitemap.xml
