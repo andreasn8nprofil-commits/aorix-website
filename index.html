@@ -306,19 +306,22 @@
                     btn.textContent = 'Sende…';
                 }
 
-                var data = new FormData(form);
-                // mode: 'no-cors' = MailerLite akzeptiert POST, Response ist opaque
-                // (lesen wir eh nicht — fire-and-forget)
+                // MailerLite akzeptiert nur application/x-www-form-urlencoded,
+                // NICHT multipart/form-data — daher URLSearchParams statt FormData.
+                var params = new URLSearchParams();
+                var fd = new FormData(form);
+                fd.forEach(function (value, key) { params.append(key, value); });
+
                 fetch(form.action, {
                     method: 'POST',
                     mode: 'no-cors',
-                    body: data
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: params.toString()
                 }).then(function () {
                     showThanks();
                 }).catch(function () {
                     // Selbst bei Network-Fehler: Thank-You zeigen.
-                    // Nutzer hat Email eingegeben, MailerLite kriegt's beim nächsten Retry
-                    // oder der User merkt es per ausbleibender Confirmation-Mail.
+                    // Nutzer hat Email eingegeben — Network-Errors sind selten.
                     showThanks();
                 });
             });
