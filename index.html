@@ -62,16 +62,28 @@
                 </p>
                 <div class="hero-cta">
                     <!-- MailerLite Hybrid-Form: Aorix-Branding, MailerLite-Backend -->
-                    <form class="waitlist-form"
+                    <form id="waitlist-form" class="waitlist-form"
                           action="https://assets.mailerlite.com/jsonp/2286425/forms/185982261791819636/subscribe"
                           method="post"
-                          target="_blank">
-                        <input type="email" name="fields[email]" placeholder="Deine beste E-Mail Adresse" required aria-label="E-Mail-Adresse" autocomplete="email">
+                          target="ml-submit-iframe">
+                        <input type="text" name="fields[vorname]" class="input-vorname" placeholder="Vorname (optional)" aria-label="Vorname" autocomplete="given-name">
+                        <input type="email" name="fields[email]" class="input-email" placeholder="Deine beste E-Mail Adresse" required aria-label="E-Mail-Adresse" autocomplete="email">
                         <input type="hidden" name="ml-submit" value="1">
                         <input type="hidden" name="anticsrf" value="true">
                         <button type="submit" class="btn btn-primary">Kostenlos auf die Warteliste &rarr;</button>
                     </form>
-                    <p class="micro-copy">Sei einer der ersten Selbstständigen auf der Liste &middot; Keine Kreditkarte nötig</p>
+                    <iframe name="ml-submit-iframe" class="ml-submit-iframe" aria-hidden="true" tabindex="-1"></iframe>
+                    <p id="waitlist-microcopy" class="micro-copy">Sei einer der ersten Selbstständigen auf der Liste &middot; Keine Kreditkarte nötig</p>
+                    <div id="waitlist-thanks" class="waitlist-thanks" hidden>
+                        <h3>Fast geschafft &mdash; check dein Postfach! 📬</h3>
+                        <p>
+                            Wir haben dir eine Bestätigungs-Mail von <strong>andreas@aorix.de</strong> geschickt.<br>
+                            Klick den Button drin &mdash; danach bist du auf der Liste.
+                        </p>
+                        <p class="waitlist-thanks-tip">
+                            <strong>Tipp:</strong> Falls die Mail nicht in der Inbox ist, schau im <em>Spam-Ordner</em> &mdash; und markier sie als „Kein Spam", dann landen alle weiteren Aorix-Mails sauber bei dir.
+                        </p>
+                    </div>
                 </div>
             </div>
             
@@ -263,6 +275,31 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        // Waitlist Form: Inline Thank-You statt JSON-Tab nach Submit
+        (function () {
+            var form = document.getElementById('waitlist-form');
+            if (!form) return;
+            form.addEventListener('submit', function () {
+                // Submit läuft via hidden iframe — wir blenden das Form sofort aus
+                // und zeigen die Thank-You-Sektion. Falls MailerLite-Validation greift,
+                // bekommt der User trotzdem den hidden iframe Response — aber das ist
+                // selten (E-Mail-Format wird ja schon im Browser via required+type validiert).
+                setTimeout(function () {
+                    var thanks = document.getElementById('waitlist-thanks');
+                    var micro  = document.getElementById('waitlist-microcopy');
+                    if (form)   form.hidden = true;
+                    if (micro)  micro.hidden = true;
+                    if (thanks) thanks.hidden = false;
+                    // Smooth-Scroll zur Thank-You-Sektion (falls Page tief gescrollt war)
+                    if (thanks && thanks.scrollIntoView) {
+                        thanks.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                }, 250);
+            });
+        })();
+    </script>
 
 </body>
 </html>

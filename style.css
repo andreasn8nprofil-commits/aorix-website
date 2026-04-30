@@ -172,18 +172,38 @@ a {
 /* WAITLIST FORM */
 .waitlist-form {
     display: flex;
+    flex-wrap: wrap;
     gap: 12px;
     margin-bottom: 12px;
 }
 
 .waitlist-form input {
-    flex: 1;
     padding: 14px 16px;
     border: 1px solid var(--border-color);
     border-radius: 8px;
     font-size: 1rem;
     outline: none;
     font-family: inherit;
+}
+
+.waitlist-form .input-vorname {
+    flex: 1 1 140px;
+    min-width: 140px;
+}
+
+.waitlist-form .input-email {
+    flex: 2 1 240px;
+    min-width: 220px;
+}
+
+.waitlist-form .btn-primary {
+    flex: 1 1 100%;
+}
+
+@media (min-width: 720px) {
+    .waitlist-form .btn-primary {
+        flex: 0 0 auto;
+    }
 }
 
 .waitlist-form input:focus {
@@ -194,6 +214,53 @@ a {
 .micro-copy {
     font-size: 0.85rem;
     color: #64748b;
+}
+
+/* Hidden submit iframe (kein visual footprint) */
+.ml-submit-iframe {
+    display: none !important;
+    width: 0;
+    height: 0;
+    border: 0;
+}
+
+/* Inline Thank-You nach Anmeldung */
+.waitlist-thanks {
+    background: linear-gradient(135deg, rgba(14, 165, 233, 0.08), rgba(14, 165, 233, 0.02));
+    border: 1px solid rgba(14, 165, 233, 0.25);
+    border-radius: 12px;
+    padding: 24px 28px;
+    animation: waitlist-thanks-fade-in 0.4s ease-out;
+}
+
+.waitlist-thanks h3 {
+    margin: 0 0 12px 0;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--electric-blue, #0ea5e9);
+}
+
+.waitlist-thanks p {
+    margin: 0 0 12px 0;
+    font-size: 1rem;
+    line-height: 1.55;
+    color: inherit;
+}
+
+.waitlist-thanks p:last-child {
+    margin-bottom: 0;
+}
+
+.waitlist-thanks-tip {
+    font-size: 0.9rem;
+    color: #64748b;
+    padding-top: 8px;
+    border-top: 1px dashed rgba(100, 116, 139, 0.25);
+}
+
+@keyframes waitlist-thanks-fade-in {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0);   }
 }
 
 /* --- HERO VISUAL (MOCKUP) --- */
