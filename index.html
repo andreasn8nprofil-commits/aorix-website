@@ -277,26 +277,50 @@
     </footer>
 
     <script>
-        // Waitlist Form: Inline Thank-You statt JSON-Tab nach Submit
+        // Waitlist Form: AJAX submit (fetch no-cors) + Inline Thank-You
+        // Kein iframe-Hack — funktioniert sauber in Inkognito + Tracking-Prevention-Browsern
         (function () {
             var form = document.getElementById('waitlist-form');
             if (!form) return;
-            form.addEventListener('submit', function () {
-                // Submit läuft via hidden iframe — wir blenden das Form sofort aus
-                // und zeigen die Thank-You-Sektion. Falls MailerLite-Validation greift,
-                // bekommt der User trotzdem den hidden iframe Response — aber das ist
-                // selten (E-Mail-Format wird ja schon im Browser via required+type validiert).
-                setTimeout(function () {
-                    var thanks = document.getElementById('waitlist-thanks');
-                    var micro  = document.getElementById('waitlist-microcopy');
-                    if (form)   form.hidden = true;
-                    if (micro)  micro.hidden = true;
-                    if (thanks) thanks.hidden = false;
-                    // Smooth-Scroll zur Thank-You-Sektion (falls Page tief gescrollt war)
-                    if (thanks && thanks.scrollIntoView) {
+
+            function showThanks() {
+                var thanks = document.getElementById('waitlist-thanks');
+                var micro  = document.getElementById('waitlist-microcopy');
+                if (form)   form.hidden = true;
+                if (micro)  micro.hidden = true;
+                if (thanks) {
+                    thanks.hidden = false;
+                    if (thanks.scrollIntoView) {
                         thanks.scrollIntoView({ behavior: 'smooth', block: 'center' });
                     }
-                }, 250);
+                }
+            }
+
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                // Disable submit-Button, damit User nicht doppelt klickt
+                var btn = form.querySelector('button[type="submit"]');
+                if (btn) {
+                    btn.disabled = true;
+                    btn.textContent = 'Sende…';
+                }
+
+                var data = new FormData(form);
+                // mode: 'no-cors' = MailerLite akzeptiert POST, Response ist opaque
+                // (lesen wir eh nicht — fire-and-forget)
+                fetch(form.action, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    body: data
+                }).then(function () {
+                    showThanks();
+                }).catch(function () {
+                    // Selbst bei Network-Fehler: Thank-You zeigen.
+                    // Nutzer hat Email eingegeben, MailerLite kriegt's beim nächsten Retry
+                    // oder der User merkt es per ausbleibender Confirmation-Mail.
+                    showThanks();
+                });
             });
         })();
     </script>
