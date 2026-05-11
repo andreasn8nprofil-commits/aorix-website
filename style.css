@@ -3,6 +3,7 @@
     --dark-navy: #0f172a;
     --navy-light: #1e293b;
     --electric-blue: #0ea5e9;
+    --blue-dark: #0369a1;
     --blue-glow: rgba(14, 165, 233, 0.5);
     --bg-color: #f8fafc;
     --text-main: #334155;
@@ -58,6 +59,7 @@ a {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 24px;
 }
 
 .logo {
@@ -78,13 +80,57 @@ a {
 .nav-links {
     display: flex;
     align-items: center;
-    gap: 32px;
+    justify-content: flex-end;
+    gap: 18px;
+    flex: 1;
     font-weight: 500;
     font-size: 0.95rem;
 }
 
 .nav-links a:hover {
     color: var(--electric-blue);
+}
+
+.nav-primary,
+.nav-secondary {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.nav-primary {
+    background: var(--white);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 6px;
+    box-shadow: 0 10px 22px rgba(15, 23, 42, 0.06);
+}
+
+.nav-area-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 38px;
+    padding: 8px 13px;
+    border-radius: 8px;
+    color: var(--dark-navy);
+    font-size: 0.88rem;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.nav-area-link:hover,
+.nav-area-link.active {
+    background: rgba(14, 165, 233, 0.1);
+    color: var(--blue-dark, #0369a1);
+}
+
+.nav-area-link.active {
+    box-shadow: inset 0 0 0 1px rgba(14, 165, 233, 0.22);
+}
+
+.nav-secondary a:not(.btn) {
+    color: #475569;
+    white-space: nowrap;
 }
 
 /* --- BUTTONS --- */
@@ -167,6 +213,163 @@ a {
     color: #475569;
     margin-bottom: 40px;
     max-width: 90%;
+}
+
+/* --- AREA LANDING PAGE --- */
+.area-hero {
+    min-height: 74vh;
+    display: flex;
+    align-items: center;
+    padding: 96px 0 72px;
+    background:
+        linear-gradient(90deg, rgba(248, 250, 252, 0.98) 0%, rgba(248, 250, 252, 0.94) 48%, rgba(248, 250, 252, 0.6) 100%),
+        url("assets/aorix_social_pin_etsy_description_structure_2026-05-11.png") right 6% center / min(40vw, 430px) auto no-repeat,
+        var(--bg-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.area-hero-content {
+    max-width: 720px;
+}
+
+.area-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    min-height: 34px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    border: 1px solid rgba(14, 165, 233, 0.28);
+    background: rgba(14, 165, 233, 0.08);
+    color: var(--blue-dark, #0369a1);
+    font-size: 0.82rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+}
+
+.area-title {
+    max-width: 760px;
+    color: var(--dark-navy);
+    font-size: 4rem;
+    line-height: 1.08;
+    font-weight: 800;
+    margin-bottom: 24px;
+}
+
+.area-subtitle {
+    max-width: 650px;
+    color: #475569;
+    font-size: 1.16rem;
+    margin-bottom: 34px;
+}
+
+.area-actions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.btn-secondary {
+    background: var(--white);
+    color: var(--dark-navy);
+    border: 1px solid var(--border-color);
+}
+
+.btn-secondary:hover {
+    border-color: rgba(14, 165, 233, 0.5);
+    color: var(--blue-dark, #0369a1);
+}
+
+.signal-strip {
+    padding: 28px 0;
+    background: var(--white);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.signal-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+}
+
+.signal-item {
+    padding: 18px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background: var(--bg-color);
+}
+
+.signal-item strong {
+    display: block;
+    color: var(--dark-navy);
+    margin-bottom: 4px;
+}
+
+.area-feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+}
+
+.area-feature {
+    background: var(--white);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 30px;
+}
+
+.area-feature h3,
+.workflow-panel h3 {
+    color: var(--dark-navy);
+    margin-bottom: 12px;
+}
+
+.workflow-panel {
+    background: var(--white);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 30px;
+}
+
+.workflow-list {
+    list-style: none;
+    display: grid;
+    gap: 14px;
+}
+
+.workflow-list li {
+    padding-left: 26px;
+    position: relative;
+}
+
+.workflow-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 11px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--electric-blue);
+}
+
+.split-section {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 44px;
+    align-items: start;
+}
+
+.quote-band {
+    background: var(--navy-light);
+    color: var(--white);
+}
+
+.quote-band .section-title,
+.quote-band .section-subtitle {
+    color: var(--white);
 }
 
 /* WAITLIST FORM */
@@ -641,6 +844,22 @@ a {
 
 /* --- RESPONSIVE --- */
 @media (max-width: 900px) {
+    .nav-container {
+        align-items: flex-start;
+    }
+    .nav-links {
+        align-items: flex-end;
+        flex-direction: column;
+        gap: 10px;
+    }
+    .nav-primary {
+        max-width: 100%;
+        overflow-x: auto;
+    }
+    .nav-secondary {
+        flex-wrap: wrap;
+        justify-content: flex-end;
+    }
     .hero-container {
         grid-template-columns: 1fr;
     }
@@ -651,6 +870,21 @@ a {
         display: none;
     }
     .grid-3, .grid-2 {
+        grid-template-columns: 1fr;
+    }
+    .area-hero {
+        min-height: auto;
+        padding: 72px 0 56px;
+        background:
+            linear-gradient(180deg, rgba(248, 250, 252, 0.98), rgba(248, 250, 252, 0.94)),
+            var(--bg-color);
+    }
+    .area-title {
+        font-size: 2.8rem;
+    }
+    .signal-grid,
+    .area-feature-grid,
+    .split-section {
         grid-template-columns: 1fr;
     }
     .pro-card {
