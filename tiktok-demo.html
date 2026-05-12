@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aorix TikTok Sandbox Upload Demo</title>
+    <meta name="description" content="Aorix TikTok sandbox demo for Login Kit and Content Posting API upload flow.">
+    <meta name="robots" content="noindex,nofollow">
+    <meta name="p:domain_verify" content="876386f66dc3f3471d98528a070c699e">
+    <link rel="canonical" href="https://www.aorix.de/tiktok-demo.html">
+    <link rel="icon" type="image/png" href="assets/aorix_x_favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/favicon.ico">
+    <link rel="apple-touch-icon" href="assets/aorix_x_favicon.png">
+    <link rel="preconnect" href="https://fonts.bunny.net" crossorigin>
+    <link href="https://fonts.bunny.net/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="/" class="logo">
+                <img src="assets/aorix_logo_main.png" alt="Aorix Logo" class="logo-img">
+            </a>
+            <div class="nav-links">
+                <div class="nav-primary" aria-label="Aorix areas">
+                    <a href="etsy.html" class="nav-area-link">Etsy Automation</a>
+                    <a href="setup.html" class="nav-area-link">Shop Automation</a>
+                    <a href="tiktok-demo.html" class="nav-area-link active">Social Media Automation</a>
+                </div>
+                <div class="nav-secondary">
+                    <a href="/">Learning Platform</a>
+                    <a href="datenschutz.html">Privacy</a>
+                    <a href="impressum.html">Imprint</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="tiktok-demo-page">
+        <section class="tiktok-demo-hero">
+            <div class="container tiktok-demo-hero-grid">
+                <div class="tiktok-demo-copy">
+                    <span class="area-eyebrow">TikTok Developer Review</span>
+                    <h1 class="tiktok-demo-title">Aorix TikTok Sandbox Upload</h1>
+                    <p class="tiktok-demo-subtitle">
+                        Connect a TikTok account, verify the connected creator, and upload an approved short-form video to TikTok as a draft.
+                    </p>
+                    <div class="tiktok-scope-row" aria-label="Requested TikTok scopes">
+                        <span>Login Kit</span>
+                        <span>user.info.basic</span>
+                        <span>video.upload</span>
+                    </div>
+                </div>
+
+                <div class="tiktok-review-panel" aria-label="TikTok integration status">
+                    <div class="tiktok-panel-header">
+                        <div>
+                            <p class="tiktok-kicker">Connection</p>
+                            <h2 id="connection-title">Not connected</h2>
+                        </div>
+                        <span id="connection-pill" class="status-pill status-waiting">Waiting</span>
+                    </div>
+                    <div id="account-card" class="tiktok-account-card">
+                        <div class="avatar-placeholder" aria-hidden="true">TT</div>
+                        <div>
+                            <p id="account-name">TikTok account required</p>
+                            <span id="account-meta">Connect with TikTok Login Kit</span>
+                        </div>
+                    </div>
+                    <div class="tiktok-actions">
+                        <a id="connect-button" class="btn btn-primary" href="/api/tiktok/login">Connect TikTok</a>
+                        <button id="disconnect-button" class="btn btn-quiet" type="button" hidden>Disconnect</button>
+                    </div>
+                    <p id="oauth-message" class="tiktok-message" role="status"></p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section tiktok-demo-workspace">
+            <div class="container tiktok-demo-grid">
+                <article class="tiktok-draft-card">
+                    <div class="tiktok-card-heading">
+                        <p class="tiktok-kicker">Approved Draft</p>
+                        <h2>3 mistakes in Etsy product descriptions</h2>
+                    </div>
+                    <div class="draft-preview">
+                        <div class="draft-frame">
+                            <div class="draft-screen">
+                                <p class="draft-hook">Your Etsy description is not too short.</p>
+                                <p>It is just missing structure.</p>
+                            </div>
+                        </div>
+                        <div class="draft-copy">
+                            <dl>
+                                <div>
+                                    <dt>Channel</dt>
+                                    <dd>@aorix.ai</dd>
+                                </div>
+                                <div>
+                                    <dt>Status</dt>
+                                    <dd>approved for upload</dd>
+                                </div>
+                                <div>
+                                    <dt>Caption</dt>
+                                    <dd>3 common Etsy description mistakes and how to fix them before your listing loses the buyer.</dd>
+                                </div>
+                                <div>
+                                    <dt>Hashtags</dt>
+                                    <dd>#etsyshop #etsyseo #smallbusiness #automation</dd>
+                                </div>
+                            </dl>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="tiktok-upload-card">
+                    <div class="tiktok-card-heading">
+                        <p class="tiktok-kicker">Content Posting API</p>
+                        <h2>Upload to TikTok Draft</h2>
+                    </div>
+
+                    <label class="file-drop" for="video-file">
+                        <span>Select MP4 or MOV video</span>
+                        <strong id="file-name">No file selected</strong>
+                        <input id="video-file" type="file" accept="video/mp4,video/quicktime,video/*">
+                    </label>
+
+                    <div class="upload-controls">
+                        <button id="upload-button" class="btn btn-primary" type="button" disabled>Upload Draft</button>
+                        <span id="file-meta" class="file-meta">Use a small sandbox clip for the review video.</span>
+                    </div>
+
+                    <ol id="upload-steps" class="upload-steps" aria-label="Upload progress">
+                        <li data-step="connect">TikTok account connected</li>
+                        <li data-step="init">Upload initialized with video.upload</li>
+                        <li data-step="transfer">Video binary transferred to TikTok</li>
+                        <li data-step="review">Creator completes final review in TikTok</li>
+                    </ol>
+
+                    <div id="upload-result" class="upload-result" role="status">
+                        Ready for sandbox upload.
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        (function () {
+            var connected = false;
+            var selectedFile = null;
+            var proxyLimit = 4200000;
+
+            var connectionTitle = document.getElementById('connection-title');
+            var connectionPill = document.getElementById('connection-pill');
+            var accountName = document.getElementById('account-name');
+            var accountMeta = document.getElementById('account-meta');
+            var accountCard = document.getElementById('account-card');
+            var connectButton = document.getElementById('connect-button');
+            var disconnectButton = document.getElementById('disconnect-button');
+            var oauthMessage = document.getElementById('oauth-message');
+            var fileInput = document.getElementById('video-file');
+            var fileName = document.getElementById('file-name');
+            var fileMeta = document.getElementById('file-meta');
+            var uploadButton = document.getElementById('upload-button');
+            var uploadResult = document.getElementById('upload-result');
+
+            function setStep(step, state) {
+                var item = document.querySelector('[data-step="' + step + '"]');
+                if (!item) return;
+                item.classList.remove('is-active', 'is-done', 'is-error');
+                if (state) item.classList.add(state);
+            }
+
+            function formatBytes(bytes) {
+                if (!bytes) return '0 bytes';
+                var units = ['bytes', 'KB', 'MB', 'GB'];
+                var index = Math.floor(Math.log(bytes) / Math.log(1024));
+                return (bytes / Math.pow(1024, index)).toFixed(index === 0 ? 0 : 1) + ' ' + units[index];
+            }
+
+            function updateUploadButton() {
+                uploadButton.disabled = !(connected && selectedFile);
+            }
+
+            function readQueryMessage() {
+                var params = new URLSearchParams(window.location.search);
+                if (params.get('connected') === '1') {
+                    oauthMessage.textContent = 'TikTok authorization completed. Account details are loading.';
+                }
+                if (params.get('tiktok_error')) {
+                    oauthMessage.textContent = 'TikTok authorization error: ' + params.get('tiktok_error');
+                }
+            }
+
+            async function loadAccount() {
+                try {
+                    var response = await fetch('/api/tiktok/me', { credentials: 'same-origin' });
+                    var data = await response.json();
+
+                    if (!data.connected) {
+                        connected = false;
+                        connectionTitle.textContent = 'Not connected';
+                        connectionPill.textContent = 'Waiting';
+                        connectionPill.className = 'status-pill status-waiting';
+                        accountName.textContent = 'TikTok account required';
+                        accountMeta.textContent = data.error === 'missing_tiktok_configuration'
+                            ? 'Server environment variables are missing'
+                            : 'Connect with TikTok Login Kit';
+                        accountCard.classList.remove('is-connected');
+                        connectButton.hidden = false;
+                        disconnectButton.hidden = true;
+                        setStep('connect', '');
+                        updateUploadButton();
+                        return;
+                    }
+
+                    connected = true;
+                    var user = data.user || {};
+                    connectionTitle.textContent = 'Connected';
+                    connectionPill.textContent = 'Authorized';
+                    connectionPill.className = 'status-pill status-ready';
+                    accountName.textContent = user.display_name || '@aorix.ai';
+                    accountMeta.textContent = 'Scopes: ' + (data.session && data.session.scope ? data.session.scope : 'user.info.basic,video.upload');
+                    accountCard.classList.add('is-connected');
+                    connectButton.hidden = true;
+                    disconnectButton.hidden = false;
+                    setStep('connect', 'is-done');
+                    updateUploadButton();
+                } catch (error) {
+                    oauthMessage.textContent = 'Could not load TikTok connection status.';
+                }
+            }
+
+            async function disconnect() {
+                await fetch('/api/tiktok/logout', {
+                    method: 'POST',
+                    credentials: 'same-origin',
+                }).catch(function () {});
+                oauthMessage.textContent = 'TikTok account disconnected for this demo session.';
+                await loadAccount();
+            }
+
+            async function uploadThroughProxy(uploadUrl, file) {
+                var contentRange = 'bytes 0-' + (file.size - 1) + '/' + file.size;
+                var response = await fetch('/api/tiktok/upload-file', {
+                    method: 'PUT',
+                    credentials: 'same-origin',
+                    headers: {
+                        'Content-Type': file.type || 'video/mp4',
+                        'Content-Range': contentRange,
+                        'X-TikTok-Upload-Url': uploadUrl,
+                    },
+                    body: file,
+                });
+                var data = await response.json().catch(function () { return {}; });
+                if (!response.ok || data.ok === false) {
+                    throw new Error(data.error || 'TikTok file transfer failed.');
+                }
+                return data;
+            }
+
+            async function uploadDirect(uploadUrl, file, sourceInfo) {
+                var chunkSize = sourceInfo.chunk_size;
+                var totalChunks = sourceInfo.total_chunk_count;
+                for (var index = 0; index < totalChunks; index += 1) {
+                    var start = index * chunkSize;
+                    var end = index === totalChunks - 1 ? file.size - 1 : Math.min(file.size - 1, ((index + 1) * chunkSize) - 1);
+                    var blob = file.slice(start, end + 1);
+                    var response = await fetch(uploadUrl, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': file.type || 'video/mp4',
+                            'Content-Range': 'bytes ' + start + '-' + end + '/' + file.size,
+                        },
+                        body: blob,
+                    });
+                    if (!response.ok && response.status !== 206 && response.status !== 201) {
+                        throw new Error('TikTok chunk upload failed with status ' + response.status + '.');
+                    }
+                    uploadResult.textContent = 'Transferred chunk ' + (index + 1) + ' of ' + totalChunks + '.';
+                }
+            }
+
+            async function uploadDraft() {
+                if (!selectedFile || !connected) return;
+
+                uploadButton.disabled = true;
+                uploadResult.textContent = 'Initializing TikTok upload...';
+                setStep('init', 'is-active');
+                setStep('transfer', '');
+
+                try {
+                    var initResponse = await fetch('/api/tiktok/upload-init', {
+                        method: 'POST',
+                        credentials: 'same-origin',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            video_size: selectedFile.size,
+                            file_name: selectedFile.name,
+                            file_type: selectedFile.type,
+                        }),
+                    });
+                    var initData = await initResponse.json();
+                    if (!initResponse.ok || !initData.ok) {
+                        throw new Error(initData.error || 'TikTok upload initialization failed.');
+                    }
+
+                    var uploadUrl = initData.tiktok && initData.tiktok.data
+                        ? initData.tiktok.data.upload_url
+                        : initData.tiktok.upload_url;
+                    var publishId = initData.tiktok && initData.tiktok.data
+                        ? initData.tiktok.data.publish_id
+                        : initData.tiktok.publish_id;
+
+                    if (!uploadUrl) {
+                        throw new Error('TikTok did not return an upload URL.');
+                    }
+
+                    proxyLimit = Number(initData.upload_proxy_limit || proxyLimit);
+                    setStep('init', 'is-done');
+                    setStep('transfer', 'is-active');
+                    uploadResult.textContent = 'Transferring video to TikTok...';
+
+                    if (selectedFile.size <= proxyLimit && initData.source_info.total_chunk_count === 1) {
+                        await uploadThroughProxy(uploadUrl, selectedFile);
+                    } else {
+                        await uploadDirect(uploadUrl, selectedFile, initData.source_info);
+                    }
+
+                    setStep('transfer', 'is-done');
+                    setStep('review', 'is-done');
+                    uploadResult.textContent = 'Uploaded to TikTok draft inbox. publish_id: ' + publishId;
+                } catch (error) {
+                    setStep('init', 'is-error');
+                    setStep('transfer', 'is-error');
+                    uploadResult.textContent = error.message || 'Upload failed.';
+                } finally {
+                    updateUploadButton();
+                }
+            }
+
+            fileInput.addEventListener('change', function () {
+                selectedFile = fileInput.files && fileInput.files[0] ? fileInput.files[0] : null;
+                if (!selectedFile) {
+                    fileName.textContent = 'No file selected';
+                    fileMeta.textContent = 'Use a small sandbox clip for the review video.';
+                } else {
+                    fileName.textContent = selectedFile.name;
+                    fileMeta.textContent = formatBytes(selectedFile.size) + ' selected';
+                }
+                updateUploadButton();
+            });
+
+            disconnectButton.addEventListener('click', disconnect);
+            uploadButton.addEventListener('click', uploadDraft);
+
+            readQueryMessage();
+            loadAccount();
+        })();
+    </script>
+</body>
+</html>
