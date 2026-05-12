@@ -189,7 +189,8 @@
                     oauthMessage.textContent = 'TikTok authorization completed. Account details are loading.';
                 }
                 if (params.get('tiktok_error')) {
-                    oauthMessage.textContent = 'TikTok authorization error: ' + params.get('tiktok_error');
+                    var details = params.get('tiktok_error_description') || params.get('tiktok_log_id') || '';
+                    oauthMessage.textContent = 'TikTok authorization error: ' + params.get('tiktok_error') + (details ? ' (' + details + ')' : '');
                 }
             }
 

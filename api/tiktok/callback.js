@@ -61,6 +61,7 @@ module.exports = async function handler(req, res) {
         if (!response.ok || data.error) {
             return redirect(res, demoRedirect({
                 tiktok_error: data.error || 'token_exchange_failed',
+                tiktok_error_description: data.error_description,
                 tiktok_log_id: data.log_id,
             }));
         }

@@ -44,6 +44,10 @@ a {
     transition: all 0.2s ease;
 }
 
+[hidden] {
+    display: none !important;
+}
+
 /* --- NAVIGATION --- */
 .navbar {
     padding: 4px 0;
