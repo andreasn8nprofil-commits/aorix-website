@@ -38,7 +38,8 @@ module.exports = async function handler(req, res) {
     });
     const data = await response.json().catch(() => ({}));
 
-    if (!response.ok || data.error) {
+    const tiktokErrorCode = data.error && data.error.code ? data.error.code : null;
+    if (!response.ok || (tiktokErrorCode && tiktokErrorCode !== 'ok')) {
         return json(res, response.status || 502, {
             connected: false,
             error: 'tiktok_user_info_failed',
