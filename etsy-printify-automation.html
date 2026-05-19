@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Etsy Printify Automation – Bestellungen automatisch abwickeln</title>
-    <meta name="description" content="Etsy Printify Automation mit n8n: Bestellungen automatisch von Etsy an Printify übergeben. Spare 95% Zeit, senke Fehler auf unter 1%. Jetzt Aorix Workflow.">
+    <title>Etsy Printify Automation – Bestellungen kontrolliert abwickeln</title>
+    <meta name="description" content="Etsy Printify Automation mit n8n: Bestellungen strukturierter von Etsy zu Printify übergeben, manuelle Arbeit reduzieren und Fehlerquellen besser kontrollieren.">
     <meta name="robots" content="index,follow">
     <link rel="canonical" href="https://www.aorix.de/etsy-printify-automation.html">
     <link rel="icon" type="image/png" href="assets/aorix_x_favicon.png">
@@ -14,8 +14,8 @@
     <meta property="og:locale" content="de_DE">
     <meta property="og:url" content="https://www.aorix.de/etsy-printify-automation.html">
     <meta property="og:site_name" content="Aorix">
-    <meta property="og:title" content="Etsy Printify Automation – Bestellungen automatisch abwickeln">
-    <meta property="og:description" content="Etsy + Printify Automation mit n8n: Kein manuelles Übertragen mehr. In 30 Minuten live.">
+    <meta property="og:title" content="Etsy Printify Automation – Bestellungen kontrolliert abwickeln">
+    <meta property="og:description" content="Etsy + Printify Automation mit n8n: manuelle Übertragung reduzieren, Testlauf durchführen und Freigabe-Gates behalten.">
     <meta property="og:image" content="https://www.aorix.de/assets/aorix_logo_main.png">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Etsy Printify Automation">
@@ -47,8 +47,8 @@
         <div class="container">
             <div class="area-hero-content">
                 <div class="area-eyebrow">Printify Automation</div>
-                <h1 class="area-title">Etsy Printify Automation – Bestellungen automatisch abwickeln mit n8n</h1>
-                <p class="area-subtitle">Kein manuelles Kopieren mehr zwischen Etsy und Printify. Sparen Sie 95 % Zeit und senken Sie die Fehlerquote von über 8 % auf unter 1 %.</p>
+                <h1 class="area-title">Etsy Printify Automation – Bestellungen kontrolliert abwickeln mit n8n</h1>
+                <p class="area-subtitle">Weniger manuelles Kopieren zwischen Etsy und Printify. Aorix hilft Ihnen, Bestelldaten strukturierter zu übertragen, Fehlerquellen zu reduzieren und kritische Schritte bewusst zu prüfen.</p>
                 <div class="area-actions">
                     <a href="#fazit" class="btn btn-primary">Zum Fazit &rarr;</a>
                     <a href="setup.html#call" class="btn btn-secondary">Workflow besprechen</a>
@@ -60,9 +60,9 @@
     <section class="section" id="artikel">
         <div class="container" style="max-width: 800px;">
 
-            <h2>Das Problem – Manuelle Bestellungen killen Ihren POD-Shop</h2>
+            <h2>Das Problem – Manuelle Bestellungen bremsen Ihren POD-Shop</h2>
             <p>Sie betreiben einen Print-on-Demand-Shop auf Etsy. Ein Kunde bestellt. Sie freuen sich. Dann beginnt die Arbeit: Öffnen Sie Etsy, kopieren Namen und Adresse, wechseln zu Printify, suchen das richtige Produkt, wählen Größe und Farbe, fügen die Adresse ein und geben die Bestellung auf. Pro Bestellung dauert das vier bis sieben Minuten.</p>
-            <p>Bei zehn Bestellungen pro Tag sind das 45 bis 70 Minuten – jeden Tag. Bei 50 Bestellungen arbeiten Sie fast sechs Stunden lang nur fürs Kopieren und Einfügen. Dazu kommen Fehler: sechs bis zwölf Prozent aller manuell übertragenen Bestellungen enthalten einen Fehler. Bei tausend Bestellungen pro Monat sind das 80 Fehler – und schnell 500 bis 2.500 Euro Verlust monatlich.</p>
+            <p>Bei mehreren Bestellungen pro Tag entsteht schnell ein spürbarer Zeitblock. Dazu kommen typische Copy-Paste-Fehler: falsche Variante, unvollständige Adresse oder vergessener Status. Genau diese wiederkehrenden Schritte eignen sich für kontrollierte Automatisierung.</p>
 
             <h2>Was Printify und Etsy für POD-Verkäufer bedeutet</h2>
             <p>Printify ist einer der größten Print-on-Demand-Anbieter. Sie laden ein Design hoch, wählen ein Produkt aus Hunderten Artikeln und Printify kümmert sich um Druck und Versand. Etsy ist der Marktplatz. Die Kombination ist beliebt, weil Sie kein Lager brauchen und kein Risiko für unverkaufte Ware tragen.</p>
@@ -73,8 +73,8 @@
             <ul>
                 <li><strong>Bestellung auslesen:</strong> Name, Produkt, Variante und Adresse automatisch aus Etsy abrufen</li>
                 <li><strong>Produktvariante zuordnen:</strong> Farb- und Größenauswahl der richtigen Printify-ID zuordnen (per KI-Mapping)</li>
-                <li><strong>Bestellung anlegen:</strong> Druckauftrag automatisch bei Printify erstellen</li>
-                <li><strong>Bestätigung senden:</strong> Automatische Versandbestätigung an den Kunden</li>
+                <li><strong>Bestellung anlegen:</strong> Druckauftrag bei Printify vorbereiten oder nach Freigabe erstellen</li>
+                <li><strong>Bestätigung senden:</strong> Versandbestätigung vorbereiten oder nach Statusprüfung senden</li>
                 <li><strong>Status zurückspielen:</strong> Tracking-Informationen zurück an Etsy übertragen</li>
             </ul>
 
@@ -88,24 +88,24 @@
                 <li><strong>Printify-Node:</strong> Bestellung wird per API an Printify übergeben</li>
                 <li><strong>Benachrichtigung:</strong> Sie erhalten bei Erfolg oder Fehler eine Meldung</li>
             </ol>
-            <p>Ergebnis: Eine Bestellung, die vorher fünf Minuten dauerte, wird in Sekundenbruchteilen abgewickelt.</p>
+            <p>Ergebnis: Eine Bestellung, die vorher mehrere manuelle Schritte brauchte, läuft durch einen nachvollziehbaren Workflow mit Benachrichtigung und Fehlerprüfung.</p>
 
-            <h2>Aorix Setup – In 30 Minuten zur fertigen Automation</h2>
+            <h2>Aorix Setup – vom Testlauf zur kontrollierten Automation</h2>
             <ol>
-                <li><strong>n8n-Instanz bereitstellen:</strong> Self-Hosted (Docker) oder Aorix-Managed. In unter 15 Minuten einsatzbereit.</li>
+                <li><strong>n8n-Instanz bereitstellen:</strong> Self-Hosted (Docker), n8n Cloud oder Aorix-Managed.</li>
                 <li><strong>API-Keys hinterlegen:</strong> Etsy-API (OAuth2) und Printify-API-Token – beides kostenlos.</li>
                 <li><strong>Template importieren:</strong> Fertiges Aorix-Template in Ihre n8n-Instanz importieren.</li>
                 <li><strong>Varianten-Mapping anpassen:</strong> KI-Mapping auf Ihre Produktstruktur trainieren.</li>
-                <li><strong>Testen und live schalten:</strong> Testbestellung auslösen, prüfen, Workflow scharf schalten.</li>
+                <li><strong>Testen und freigeben:</strong> Testbestellung auslösen, Ergebnis prüfen, Workflow erst danach produktiv nutzen.</li>
             </ol>
-            <p>Danach läuft die Automation vollautomatisch – 24/7, auch nachts, am Wochenende und im Urlaub.</p>
+            <p>Danach läuft der Workflow wiederholbar im Hintergrund. Kritische Schritte wie Varianten-Mapping, Bestellfreigabe oder Kundenkommunikation können bewusst mit Review-Gates abgesichert werden.</p>
 
-            <h2 id="fazit">Fazit – Automatisieren oder zurückbleiben</h2>
+            <h2 id="fazit">Fazit – Automatisieren, ohne Kontrolle abzugeben</h2>
             <p>Wer als Etsy-POD-Verkäufer wächst, kommt an Automation nicht vorbei. Manuelles Übertragen von Bestellungen ist kein Zeichen von Kontrolle – es ist ein Bremsklotz für Ihr Business.</p>
-            <p>Mit einer Etsy-Printify-Automation reduzieren Sie den täglichen Aufwand um 95 Prozent. Die Fehlerquote sinkt von über acht Prozent auf unter ein Prozent. Und Sie gewinnen etwas zurück, das im E-Commerce unbezahlbar ist: Ihre Zeit.</p>
+            <p>Mit einer Etsy-Printify-Automation reduzieren Sie manuelle Routinearbeit und machen Fehlerquellen sichtbarer. Der wichtigste Vorteil: Sie gewinnen einen Prozess, der geprüft, verbessert und bei Bedarf erweitert werden kann.</p>
 
             <div style="background: #f0f9f0; border: 1px solid #c6e6c6; border-radius: 12px; padding: 32px; text-align: center; margin: 40px 0;">
-                <h3 style="margin-top: 0;">Printify Automation in 30 Minuten</h3>
+                <h3 style="margin-top: 0;">Printify Automation prüfen lassen</h3>
                 <p style="margin-bottom: 24px;">Vereinbaren Sie ein kostenloses Erstgespräch – wir analysieren Ihren Shop und bauen den ersten Workflow.</p>
                 <a href="setup.html#call" class="btn btn-primary">Jetzt Erstgespräch vereinbaren &rarr;</a>
             </div>
